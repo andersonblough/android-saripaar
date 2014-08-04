@@ -116,6 +116,23 @@ public class Validator {
     }
 
     /**
+     * Add a {@link View} and it's associated {@link Rule} to the Validator at a specific order
+     *
+     * @param view The The {@link View} to be validated.
+     * @param rule The {@link Rule} associated with the view.
+     * @param order the order of the {@link ViewRulePair}
+     *
+     * @throws IllegalArgumentException If {@code rule} is {@code null}.
+     */
+    public void put(View view, Rule<?> rule, int order) {
+        if (rule == null){
+            throw new IllegalArgumentException("'rule' cannot be null");
+        }
+
+        mViewsAndRules.add(order, new ViewRulePair(view, rule));
+    }
+
+    /**
      * Convenience method for adding multiple {@link Rule}s for a single {@link View}.
      *
      * @param view The {@link View} to be validated.
